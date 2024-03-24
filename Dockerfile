@@ -1,4 +1,4 @@
-FROM python:3-slim-buster
+FROM ubuntu:latest
 
 RUN apt update && apt install -y curl build-essential g++ git
 
@@ -7,7 +7,8 @@ RUN useradd -s /bin/sh -d /home/platformio -m docker
 USER root
 
 # Install PlatformIO Core
-RUN python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py)"
+RUN wget -O get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
+RUN python3 get-platformio.py
 ENV PATH=/home/platformio/.platformio/penv/bin:$PATH
 
 # Clone MarlinFirmware repository, checkout latest release tag
