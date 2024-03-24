@@ -1,13 +1,13 @@
-FROM ubuntu:latest
+FROM python:3-slim-buster
 
-RUN apt update && apt install -y curl build-essential g++ git python3
+RUN apt update && apt install -y curl build-essential g++ git
 
 # Create a non-root user and group
 RUN useradd -s /bin/sh -d /home/platformio -m docker
 USER docker:docker
 
 # Install PlatformIO Core
-copy get-platformio.py .
+COPY get-platformio.py .
 RUN python3 get-platformio.py
 ENV PATH=/home/platformio/.platformio/penv/bin:$PATH
 
