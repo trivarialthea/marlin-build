@@ -7,7 +7,7 @@ RUN useradd -s /bin/sh -d /home/platformio -m docker
 USER root
 
 # Install PlatformIO Core
-RUN wget -O get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
+RUN curl -fsSL -o get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
 RUN python3 get-platformio.py
 ENV PATH=/home/platformio/.platformio/penv/bin:$PATH
 
